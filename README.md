@@ -1,16 +1,26 @@
-# to_do_app
+# Task Trek
 
-A new Flutter project.
+Welcome to **Task Trek**, a streamlined to-do task listing application designed to help you manage your daily tasks efficiently. Whether you're planning your workday, organizing personal projects, or just keeping a grocery list, Task Trek makes it easy to stay organized and productive.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Create, Edit, and Delete Tasks**: Easily manage your tasks with simple controls.
+- **Prioritization**: Prioritize tasks according to urgency and importance.
+- **Task Categorization**: Group tasks into categories for better organization.
+- **Cross-Platform**: Available on multiple platforms, so you can keep track of your tasks anywhere.
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+**Task Trek** is built using Flutter, making it easy to run on any platform that supports Flutter apps.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Prerequisites
+
+Ensure you have Flutter installed on your machine. To install Flutter, follow the instructions on the [official Flutter website](https://flutter.dev/docs/get-started/install).
+
+### Running Task Trek
+
+Clone the repository to your local machine:
+
+```bash
+git clone https://github.com/yourusername/task-trek.git
+cd task-trek
