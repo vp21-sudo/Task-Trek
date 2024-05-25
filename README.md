@@ -24,3 +24,14 @@ Clone the repository to your local machine:
 ```bash
 git clone https://github.com/yourusername/task-trek.git
 cd task-trek
+```
+#### Install the necessary dependencies:
+
+```bash
+flutter pub get
+```
+
+#### Run the application:
+```bash
+flutter run
+```
