@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ToDoTile extends StatelessWidget {
@@ -18,15 +19,17 @@ class ToDoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 18, right: 18, top: 18),
+      padding: EdgeInsets.only(left: 38.w, right: 38.w, top: 38.h),
       child: Slidable(
         endActionPane: ActionPane(
           motion: StretchMotion(),
           children: [
             SlidableAction(
+              padding: EdgeInsets.all(18.w),
               onPressed: deleteFunction,
               icon: Icons.delete,
               backgroundColor: Colors.red,
+              borderRadius: BorderRadius.circular(28.r),
             )
           ],
         ),
@@ -42,7 +45,8 @@ class ToDoTile extends StatelessWidget {
               Text(
                 taskName,
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 64.sp,
+                  fontWeight: FontWeight.w400,
                   decoration: taskCompleted ? TextDecoration.lineThrough : null,
                 ),
               ),
@@ -50,8 +54,8 @@ class ToDoTile extends StatelessWidget {
           ),
           decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
-              borderRadius: BorderRadius.all(Radius.circular(8))),
-          padding: EdgeInsets.all(18),
+              borderRadius: BorderRadius.all(Radius.circular(28.r))),
+          padding: EdgeInsets.all(48.h),
         ),
       ),
     );

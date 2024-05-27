@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:to_do_app/components/app_drawer.dart';
 import 'package:to_do_app/components/create_task_dialog.dart';
 import 'package:to_do_app/components/to_do_tile.dart';
 import 'package:to_do_app/db/db_crud.dart';
@@ -25,6 +27,10 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> createTask() async {
+    if (_controller.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Task name is required");
+      return;
+    }
     var newTask = Task(
       id: Random.secure().nextInt(32000), // Auto-incremented
       taskName: _controller.text,
@@ -74,11 +80,19 @@ class _HomeState extends State<Home> {
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.black87),
+        // centerTitle: true,
         elevation: 0,
-        title: const Text("Task Trek"),
+        title: const Text(
+          "Tasks",
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
         toolbarHeight: 75,
       ),
+      drawer: const AppDrawer(),
       floatingActionButton: FloatingActionButton(
         elevation: 8,
         onPressed: createNewTask,
