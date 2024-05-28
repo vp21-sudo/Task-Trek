@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:to_do_app/controllers/theme.dart';
+import 'package:to_do_app/pages/calendar.dart';
 import 'package:to_do_app/pages/home.dart';
 
 void main() {
@@ -8,49 +11,51 @@ void main() {
 
 final lightTheme = ThemeData(
   brightness: Brightness.light,
-  primaryColor: Colors.yellow[700],
-  colorScheme: ColorScheme.light(
-    primary: Color.fromARGB(255, 253, 233, 50), // Primary color for light theme
+  primaryColor: Colors.green[700],
+  colorScheme: const ColorScheme.light(
+    primary:
+        Color.fromARGB(255, 119, 226, 121), // Primary color for light theme
     onPrimary:
-        Color.fromARGB(255, 237, 237, 237), // Text color on primary color
-    secondary: Color.fromARGB(255, 254, 164,
-        10), // Color for floating action button and other secondary UI
+        Color.fromARGB(255, 255, 255, 255), // Text color on primary color
+    secondary: Color.fromARGB(255, 56, 142,
+        60), // Color for floating action button and other secondary UI
     surface: Color.fromARGB(
-        255, 254, 249, 183), // Surface color for cards, sheets, and menus
+        255, 220, 249, 223), // Surface color for cards, sheets, and menus
   ),
   appBarTheme: AppBarTheme(
-    backgroundColor: Colors.yellow[700],
-    iconTheme: IconThemeData(color: Colors.white),
+    backgroundColor: Colors.green[700],
+    iconTheme: const IconThemeData(color: Colors.white),
   ),
   floatingActionButtonTheme: FloatingActionButtonThemeData(
-    backgroundColor: Colors.yellow[700],
+    backgroundColor: Colors.green[700],
   ),
 );
 
 final darkTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Colors.blueGrey[900],
-  colorScheme: ColorScheme.dark(
-    primary:
-        const Color.fromARGB(255, 38, 50, 56), // Primary color for dark theme
+  colorScheme: const ColorScheme.dark(
+    primary: Color.fromARGB(255, 38, 50, 56), // Primary color for dark theme
     onPrimary:
-        Color.fromARGB(255, 252, 251, 191), // Text color on primary color
-    secondary: const Color.fromARGB(255, 255, 143,
-        0), // Color for floating action button and other secondary UI
-    surface: const Color.fromARGB(
-        255, 48, 48, 48), // Surface color for cards, sheets, and menus
+        Color.fromARGB(255, 255, 255, 255), // Text color on primary color
+    secondary: Color.fromARGB(255, 255, 87,
+        34), // Color for floating action button and other secondary UI
+    surface: Color.fromARGB(
+        255, 71, 71, 71), // Surface color for cards, sheets, and menus
   ),
   appBarTheme: AppBarTheme(
     backgroundColor: Colors.blueGrey[900],
-    iconTheme: IconThemeData(color: Colors.amber[700]),
+    iconTheme: IconThemeData(color: Colors.orange[700]),
   ),
   floatingActionButtonTheme: FloatingActionButtonThemeData(
-    backgroundColor: Colors.yellow[900],
+    backgroundColor: Colors.orange[900],
   ),
 );
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final ThemeController themeController = Get.put(ThemeController());
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +63,26 @@ class MyApp extends StatelessWidget {
       designSize:
           const Size(1080, 2400), // Pixel 6 resolution in logical pixels
       builder: (context, child) {
-        return MaterialApp(
+        return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: const Home(),
+          // home: const Home(),
           theme: lightTheme,
           darkTheme: darkTheme,
-          themeMode: ThemeMode.system,
+          themeMode: themeController.themeMode.value,
+          initialRoute: "/home",
+          getPages: [
+            GetPage(
+              name: "/home",
+              page: () => const Home(),
+              transition: Transition.fadeIn,
+              transitionDuration: Durations.medium3,
+            ),
+            GetPage(
+                name: "/calendar",
+                page: () => const Calendar(),
+                transition: Transition.fadeIn,
+                transitionDuration: Durations.medium3)
+          ],
         );
       },
     );

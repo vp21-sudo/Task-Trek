@@ -80,7 +80,8 @@ class _HomeState extends State<Home> {
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        iconTheme: IconThemeData(color: Colors.black87),
+        iconTheme:
+            IconThemeData(color: Theme.of(context).colorScheme.secondary),
         // centerTitle: true,
         elevation: 0,
         title: const Text(

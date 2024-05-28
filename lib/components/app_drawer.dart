@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:to_do_app/components/theme_dropdown.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      child: ListView(
-        padding: EdgeInsets.only(top: 50.h),
+    return Container(
+      width: 800.w,
+      decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary,
+          borderRadius: BorderRadius.circular(28.r)),
+      // backgroundColor: Theme.of(context).colorScheme.primary,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(
             height: 300.h,
             child: DrawerHeader(
-              decoration: BoxDecoration(),
               child: Center(
                   child: Text(
                 "Task Trek",
                 style: TextStyle(
-                  fontSize: 98.sp,
+                  fontSize: 92.sp,
                   fontWeight: FontWeight.w500,
                 ),
               )),
@@ -38,8 +44,11 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.pop(context);
-              // Add your onTap code here!
+              if (Get.currentRoute != '/home') {
+                Get.offNamedUntil("/home", (route) => false);
+              } else {
+                Get.back();
+              }
             },
           ),
           ListTile(
@@ -55,10 +64,17 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.pop(context);
-              // Add your onTap code here!
+              if (Get.currentRoute != '/calendar') {
+                Get.offAndToNamed('/calendar');
+              } else {
+                Get.back();
+              }
             },
           ),
+          SizedBox(
+            height: 140.h,
+          ),
+          ThemeDropdown(),
         ],
       ),
     );
